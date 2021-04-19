@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
@@ -15,7 +12,7 @@ namespace ProyectoFinal_ReconocimientoFacial.CS.BaseDatos
     class DataBase
     {
 
-        private static OleDbConnection Link = new OleDbConnection("Provider = _________;Data Source = _________.____;");
+        private static OleDbConnection Link = new OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = DocumentacionFacial.accdb;");
         public static string[] Nombre;
         private static byte[] Caras;
         public static List<byte[]> ListCaras = new List<byte[]>();
@@ -24,22 +21,11 @@ namespace ProyectoFinal_ReconocimientoFacial.CS.BaseDatos
         public static bool GuardarImagen(string Nombre, byte[] Imagen)
         {
 
-            /*--------- Hay que hacerle una base de datos, pero aún no se la hago.
-             Será cuando prenda la PC que la crearé con SQLServer o algo, ya le preguntaré a Megumin
-             o al profesor, uno u otro, ya "ahorita vemos que pedo".jpg
-             Las columnas de la tabla son ID, Nombre e Imagen; esto lo hago para evitar errores o
-             contratiempos. Y otra cosa y es que no te fijes en los errores que se muestran en el código,
-             solo están ahí por no haber una base de datos creada a la cual se puedan ligar. Como ya 
-             dije "ahorita vemos que pedo".jpg
-             Hasta entonces, lo dejo aquí y veré si lo logro terminara para el domingo a mas tardar. Mejor 
-             será o sería si fuere el sábado. Sarabada ---------*/
-
             Link.Open();
-            OleDbCommand Comando = new OleDbCommand("INSERT INTO ______ ( Nombre, Imagen ) VALUES ('" + Nombre
-                + "', ?);");
+            OleDbCommand Comando = new OleDbCommand("INSERT INTO DatosFaciales ( Nombre, Foto ) VALUES ( '" + Nombre + "', ? );", Link);
             OleDbParameter ParImagen = new OleDbParameter("@Imagen", OleDbType.VarBinary, Imagen.Length);
             ParImagen.Value = Imagen;
-            Comando.Parameters.Add(Imagen);
+            Comando.Parameters.Add(ParImagen);
             int Resultado = Comando.ExecuteNonQuery();
             Link.Close();
 
@@ -47,11 +33,22 @@ namespace ProyectoFinal_ReconocimientoFacial.CS.BaseDatos
 
         }
 
+        public static void Eliminar()
+        {
+
+            Link.Open();
+            OleDbCommand Comando = new OleDbCommand("DELETE FROM DatosFaciales WHERE  Nombre = ?;", Link);
+            Comando.Parameters.Add(Nombre);
+            Comando.ExecuteNonQuery();
+            Link.Close();
+
+        }
+
         public static DataTable Consulta(DataGridView DATA)
         {
 
             Link.Open();
-            OleDbCommand Comando = new OleDbCommand("SELECT * FROM _____", Link);
+            OleDbCommand Comando = new OleDbCommand("SELECT * FROM DatosFaciales", Link);
             OleDbDataAdapter DA = new OleDbDataAdapter(Comando);
             DataTable DT = new DataTable();
             DA.Fill(DT);
@@ -78,7 +75,7 @@ namespace ProyectoFinal_ReconocimientoFacial.CS.BaseDatos
                 for (int i = 0; i < Cont; i++)
                 {
 
-                    DATA.Columns[1].Height = 110;
+                    DATA.Rows[i].Height = 110;
 
                 }
 
