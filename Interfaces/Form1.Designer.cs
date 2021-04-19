@@ -39,6 +39,8 @@ namespace ProyectoFinal_ReconocimientoFacial.CS
             // 
             // IBX_Camara
             // 
+            this.IBX_Camara.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.IBX_Camara.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.IBX_Camara.Location = new System.Drawing.Point(36, 62);
             this.IBX_Camara.Name = "IBX_Camara";
             this.IBX_Camara.Size = new System.Drawing.Size(319, 302);
@@ -47,6 +49,8 @@ namespace ProyectoFinal_ReconocimientoFacial.CS
             // 
             // BTN_Registrar
             // 
+            this.BTN_Registrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BTN_Registrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BTN_Registrar.Location = new System.Drawing.Point(483, 231);
             this.BTN_Registrar.Name = "BTN_Registrar";
             this.BTN_Registrar.Size = new System.Drawing.Size(116, 34);
@@ -67,6 +71,7 @@ namespace ProyectoFinal_ReconocimientoFacial.CS
             // 
             // LBL_Cantidad
             // 
+            this.LBL_Cantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.LBL_Cantidad.AutoSize = true;
             this.LBL_Cantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBL_Cantidad.Location = new System.Drawing.Point(581, 143);
